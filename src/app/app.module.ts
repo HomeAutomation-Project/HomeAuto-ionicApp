@@ -5,6 +5,8 @@ import { Location } from '../pages/location/location';
 import { Schedule } from '../pages/schedule/schedule';
 import {Dashboard} from '../pages/dashboard/dashboard';
 import {Account} from '../pages/account/account';
+import {Settings} from '../pages/settings/settings';
+import {Login} from '../pages/login/login';
 
 @NgModule({
   declarations: [
@@ -12,7 +14,9 @@ import {Account} from '../pages/account/account';
     Location,
     Schedule,
     Dashboard,
-    Account
+    Account,
+    Settings,
+    Login
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -23,7 +27,9 @@ import {Account} from '../pages/account/account';
     Location,
     Schedule,
     Dashboard,
-    Account
+    Account,
+    Settings,
+    Login
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
 })

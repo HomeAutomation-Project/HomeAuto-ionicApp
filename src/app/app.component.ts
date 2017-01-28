@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
-
+import {Settings} from '../pages/settings/settings';
 import { Schedule } from '../pages/schedule/schedule';
 import {Dashboard} from '../pages/dashboard/dashboard';
 import {Account} from '../pages/account/account';
@@ -18,7 +18,7 @@ export class MyApp {
 
   pages: Array<{title: string, component: any, icon: String}>;
 
-  constructor(public platform: Platform) {
+  constructor(public platform: Platform, public modalCtrl : ModalController) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -26,7 +26,8 @@ export class MyApp {
       { title: 'Dashboard', component: Dashboard, icon:'home' },
       { title: 'Account Details', component: Account, icon:'contact' },
       { title: 'Location', component: Location, icon:'jet' },
-      { title: 'Schedule', component: Schedule, icon:'timer' }
+      { title: 'Schedule', component: Schedule, icon:'timer' },
+      { title: 'Settings', component: Settings, icon:'settings' }
     ];
 
   }

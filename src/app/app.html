@@ -10,6 +10,10 @@
       <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
           <ion-icon name="{{p.icon}}"></ion-icon> {{p.title}}
       </button>
+      
+      <button menuClose ion-item>
+          <ion-icon name="ion-ionic" (click)="presentLoginModal()"></ion-icon> Login
+      </button>
     </ion-list>
   </ion-content>
 

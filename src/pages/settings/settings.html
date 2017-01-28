@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-navbar  color="danger">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Settings</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <h3>Settings</h3>
+  <form (submit)="setDefaults()">
+      <ion-list>
+          <ion-item>
+            <ion-label>HTTPS</ion-label>
+            <ion-toggle [(ngModel)]="protocol" name="protocol"></ion-toggle>
+        </ion-item>
+        <ion-item>
+            <ion-label color="primary" stacked>Server URL (WITHOUT http:// or https://)</ion-label>
+            <ion-input placeholder="URL" [(ngModel)]="URL" name="URL"></ion-input>
+        </ion-item>
+      </ion-list>
+      <button type="Submit" ion-button>Submit</button>
+  </form>
+</ion-content>
