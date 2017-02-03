@@ -6,6 +6,8 @@ import { Schedule } from '../pages/schedule/schedule';
 import {Dashboard} from '../pages/dashboard/dashboard';
 import {Account} from '../pages/account/account';
 import {Location} from '../pages/location/location';
+import {Login} from '../pages/login/login';
+import {SignupPage} from '../pages/signup/signup';
 
 
 @Component({
@@ -18,7 +20,7 @@ export class MyApp {
 
   pages: Array<{title: string, component: any, icon: String}>;
 
-  constructor(public platform: Platform, public modalCtrl : ModalController) {
+  constructor(public platform: Platform) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -27,7 +29,9 @@ export class MyApp {
       { title: 'Account Details', component: Account, icon:'contact' },
       { title: 'Location', component: Location, icon:'jet' },
       { title: 'Schedule', component: Schedule, icon:'timer' },
-      { title: 'Settings', component: Settings, icon:'settings' }
+      { title: 'Settings', component: Settings, icon:'settings' },
+      { title: 'Login' , component:Login, icon:'key'},
+      { title: 'Sign Up' , component:SignupPage, icon:'key'}
     ];
 
   }

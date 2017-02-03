@@ -1,7 +1,7 @@
 {
-  "name": "ionic-app-base",
-  "author": "Ionic Framework",
-  "homepage": "http://ionicframework.com/",
+  "name": "home-automation-system",
+  "author": "Aman Vishnani  (aman62@gmail.com)",
+  "homepage": "http://auto.amanvishnani.com/",
   "private": true,
   "scripts": {
     "clean": "ionic-app-scripts clean",
