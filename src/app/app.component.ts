@@ -8,10 +8,11 @@ import {Account} from '../pages/account/account';
 import {Location} from '../pages/location/location';
 import {Login} from '../pages/login/login';
 import {SignupPage} from '../pages/signup/signup';
-
+import { myhttpService } from './services/myhttp.service'
 
 @Component({
-  templateUrl: 'app.html'
+  templateUrl: 'app.html',
+  providers:[myhttpService]
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
