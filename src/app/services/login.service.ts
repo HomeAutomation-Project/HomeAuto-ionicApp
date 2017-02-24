@@ -3,7 +3,7 @@ import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 
 @Injectable()
-export class myhttpService{
+export class LoginService{
     http:any;
     baseUrl: string;
     myUrl: string;
@@ -21,5 +21,15 @@ export class myhttpService{
         return this.http.post(this.baseUrl+'/authenticate',{'username':username, 'password':password})
         .map((res:Response) => res.json()) // ...and calling .json() on the response to return data
         .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+    }
+
+    
+    getToken()
+    {
+        return localStorage.getItem("token");
+    }
+    setToken(token : string)
+    {
+        localStorage.setItem("token",token);
     }
 }
