@@ -24,6 +24,10 @@ export class LoginService{
         .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
     }
 
+    logout()
+    {
+        localStorage.removeItem("token");
+    }
     
     getToken()
     {

@@ -6,13 +6,16 @@
   </ion-header>
 
   <ion-content>
-    <ion-list>
-      <button menuClose ion-item *ngFor="let p of pages1" (click)="openPage(p)" [hidden]="!f">
+    <ion-list [hidden]="!f">
+      <button menuClose ion-item *ngFor="let p of pages1" (click)="openPage(p)">
           <ion-icon name="{{p.icon}}"></ion-icon> {{p.title}}
-      </button> 
+      </button>
+      <button menuClose ion-item (click)="doLogout()">
+          <ion-icon name="key"></ion-icon> Logout
+      </button>
     </ion-list>
-    <ion-list>
-      <button menuClose ion-item *ngFor="let p of pages2" (click)="openPage(p)" [hidden]="f">
+    <ion-list [hidden]="f">
+      <button menuClose ion-item *ngFor="let p of pages2" (click)="openPage(p)">
           <ion-icon name="{{p.icon}}"></ion-icon> {{p.title}}
       </button>
       

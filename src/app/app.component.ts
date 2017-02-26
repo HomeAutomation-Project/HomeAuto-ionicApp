@@ -45,6 +45,12 @@ export class MyApp {
     })
   }
 
+  doLogout()
+  {
+    this.ls.logout();
+    this.nav.setRoot(Login);
+  }
+
   initializeApp() {
     this.platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
