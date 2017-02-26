@@ -43,4 +43,24 @@ export class LoginService{
             console.log(this.baseUrl);
         }
     }
+    public isLoggedIn()
+    {
+        var token = this.getToken();
+        if(token)
+        {
+            var base64Url = token.split('.')[1];
+            var base64 = base64Url.replace('-','+').replace('_','/');
+            var params = JSON.parse(atob(base64));
+            return Math.round(new Date().getTime() / 1000) <= params.exp;
+        }
+        else{
+            return false;
+        }
+    }
+
+    $isLoggedIn = new Observable(observer => {
+        setInterval(()=>{
+            observer.next(this.isLoggedIn());
+        },500)
+    })
 }

@@ -20,22 +20,29 @@ export class MyApp {
 
   rootPage: any = Dashboard;
 
-  pages: Array<{title: string, component: any, icon: String}>;
-
-  constructor(public platform: Platform) {
+  pages1: Array<{title: string, component: any, icon: String}>;
+  pages2: Array<{title: string, component: any, icon: String}>;
+  public f;
+  constructor(public platform: Platform, private ls: LoginService) {
     this.initializeApp();
-
+    
     // used for an example of ngFor and navigation
-    this.pages = [
-      { title: 'Dashboard', component: Dashboard, icon:'home' },
-      { title: 'Account Details', component: Account, icon:'contact' },
-      { title: 'Location', component: Location, icon:'jet' },
-      { title: 'Schedule', component: Schedule, icon:'timer' },
-      { title: 'Settings', component: Settings, icon:'settings' },
+    this.pages1 = [
+      { title: 'Dashboard', component: Dashboard, icon:'home'},
+      { title: 'Account Details', component: Account, icon:'contact'},
+      { title: 'Location', component: Location, icon:'jet'},
+      { title: 'Schedule', component: Schedule, icon:'timer'},
+      { title: 'Settings', component: Settings, icon:'settings'}
+    ];
+    this.pages2=[
       { title: 'Login' , component:Login, icon:'key'},
-      { title: 'Sign Up' , component:SignupPage, icon:'key'}
+      { title: 'Sign Up' , component:SignupPage, icon:'key'},
+      { title: 'Settings', component: Settings, icon:'settings'}
     ];
 
+    this.ls.$isLoggedIn.subscribe(val =>{
+      this.f =val;
+    })
   }
 
   initializeApp() {
