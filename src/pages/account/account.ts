@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-
+import { AccountService } from '../../app/services/account.service';
 import { NavController } from 'ionic-angular';
 
 @Component({
@@ -8,8 +8,9 @@ import { NavController } from 'ionic-angular';
 })
 export class Account {
 
-  constructor(public navCtrl: NavController) {
-    
+  constructor(public navCtrl: NavController, private acc:AccountService) {
+        this.acc.getAccountDetails().subscribe(res=>{console.log(res)});
+          
   }
 
 }
