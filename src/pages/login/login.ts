@@ -31,7 +31,7 @@ export class Login{
         this.ls.setToken(result.token);
         loader.dismiss();
         let alert = this.us.Alert("Success", "You have been logged in!");
-        this.navCtrl.push(Dashboard);
+        this.navCtrl.setRoot(Dashboard);
       },
       error =>{
         console.log(error);

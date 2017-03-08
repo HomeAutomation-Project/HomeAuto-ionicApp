@@ -18,7 +18,7 @@ import { AccountService } from './services/account.service';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = Dashboard;
+  rootPage: any = this.ls.$isLoggedIn? Dashboard: Login;
 
   pages1: Array<{title: string, component: any, icon: String}>;
   pages2: Array<{title: string, component: any, icon: String}>;

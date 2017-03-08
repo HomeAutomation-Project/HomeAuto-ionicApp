@@ -15,7 +15,11 @@ export class LoginService{
         this.baseUrl= this.baseUrl+this.myUrl;
         console.log(this.baseUrl);
     }
-
+    /**
+     * 
+     * @param username Provide username
+     * @param password provide password
+     */
     login(username, password)
     {
         this.safeMode();
