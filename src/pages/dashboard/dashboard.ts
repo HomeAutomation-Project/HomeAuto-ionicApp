@@ -17,7 +17,7 @@ export class Dashboard {
     if(!this.ls.isLoggedIn())
     {
       this.us.Alert("You are not logged in!", "Please Log in");
-      this.navCtrl.push(Login);
+      this.navCtrl.setRoot(Login);
     }
   }
 
