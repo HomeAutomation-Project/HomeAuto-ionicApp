@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-
+import { LocationService } from '../../app/services/location.service';   
 import { NavController } from 'ionic-angular';
 
 @Component({
@@ -8,7 +8,12 @@ import { NavController } from 'ionic-angular';
 })
 export class Location {
 
-  constructor(public navCtrl: NavController) {
+  public locations:any;
+  constructor(public navCtrl: NavController, private loc:LocationService) {
+    this.locations=[];
+    this.loc.getLocationDetails().subscribe(res=>{console.log(res)
+    this.locations=res;
+  });
     
   }
 
