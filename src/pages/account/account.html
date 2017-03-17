@@ -12,16 +12,16 @@
 
   <p>
   <ion-item>
-    <ion-input type="text" placeholder="Username"></ion-input>
+    <ion-input type="text" placeholder="Username" [(ngModel)]="user.username" disabled></ion-input>
   </ion-item>
    <ion-item>
-    <ion-input type="text" placeholder="First Name"></ion-input>
+    <ion-input type="text" placeholder="First Name" [(ngModel)]="user.first"></ion-input>
   </ion-item>
    <ion-item>
-    <ion-input type="text" placeholder="Last Name"></ion-input>
+    <ion-input type="text" placeholder="Last Name" [(ngModel)]="user.last"></ion-input>
   </ion-item>
    <ion-item>
-    <ion-input type="text" placeholder="Email"></ion-input>
+    <ion-input type="text" placeholder="Email" [(ngModel)]="user.email"></ion-input>
   </ion-item>
 
 
@@ -30,5 +30,5 @@
 
   </p>
 
-  <button ion-button secondary menuToggle>Toggle Menu</button>
+  <button ion-button secondary menuToggle>Update</button>
 </ion-content>
