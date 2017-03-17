@@ -7,12 +7,34 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <h3>Location</h3>
+<ion-content padding class="cards-bg">
+  <ion-card *ngFor="let l of locations">
 
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.
-  </p>
+    <ion-card-content>
+      <ion-card-title>
+       {{l.name}}
+      </ion-card-title>
+    </ion-card-content>
+    <ion-row no-padding>
+      <ion-col>
+        <button ion-button clear small color="danger" icon-left>
+          <ion-icon name='md-open'></ion-icon>
+          View
+        </button>
+      </ion-col>
+      <ion-col text-center>
+        <button ion-button clear small color="danger" icon-left>
+          <ion-icon name='md-create'></ion-icon>
+          Edit
+        </button>
+      </ion-col>
+      <ion-col text-right>
+        <button ion-button clear small color="danger" icon-left>
+          <ion-icon name='md-trash'></ion-icon>
+          Delete
+        </button>
+      </ion-col>
+    </ion-row>
 
-  <button ion-button secondary menuToggle>Toggle Menu</button>
+  </ion-card>
 </ion-content>
