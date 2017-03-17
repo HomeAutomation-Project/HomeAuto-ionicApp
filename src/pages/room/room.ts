@@ -17,6 +17,7 @@ export class RoomPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad RoomPage');
+    console.log(this.navParams.data);
   }
 
 }
