@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { RoomService } from '../../app/services/room.service';
+import { SwitchPage } from '../switch/switch';
 /*
   Generated class for the Room page.
 
@@ -27,7 +28,7 @@ export class RoomPage {
 
   openRoom(roomName:any)
   {
-    //this.navCtrl.push(SwitchPage,{'room':roomName});
+    this.navCtrl.push(SwitchPage,{'room':roomName});
   }
 
 }

@@ -15,6 +15,8 @@ import { AccountService } from './services/account.service';
 import { LocationService } from './services/location.service';
 import { RoomService } from './services/room.service';
 import { ScheduleService } from './services/schedule.service';
+import { SwitchPage } from '../pages/switch/switch';
+
 @Component({
   templateUrl: 'app.html',
   providers:[LoginService, UtilService,AccountService,LocationService, RoomService, ScheduleService]

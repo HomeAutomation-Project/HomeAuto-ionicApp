@@ -9,6 +9,7 @@ import {Settings} from '../pages/settings/settings';
 import {Login} from '../pages/login/login';
 import {SignupPage} from '../pages/signup/signup';
 import { RoomPage } from '../pages/room/room';
+import { SwitchPage } from '../pages/switch/switch';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { RoomPage } from '../pages/room/room';
     Settings,
     Login,
     SignupPage,
-    RoomPage
+    RoomPage,
+    SwitchPage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -35,7 +37,8 @@ import { RoomPage } from '../pages/room/room';
     Settings,
     Login,
     SignupPage,
-    RoomPage
+    RoomPage,
+    SwitchPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
 })
