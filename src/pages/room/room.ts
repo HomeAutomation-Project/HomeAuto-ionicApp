@@ -26,9 +26,9 @@ export class RoomPage {
     });
   }
 
-  openRoom(roomName:any)
+  openRoom(roomName:any, location:any)
   {
-    this.navCtrl.push(SwitchPage,{'room':roomName});
+    this.navCtrl.push(SwitchPage,{'room':roomName,'location':location});
   }
 
 }
