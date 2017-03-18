@@ -13,9 +13,11 @@ import { LoginService } from './services/login.service'
 import { UtilService } from './services/util.service';
 import { AccountService } from './services/account.service';
 import { LocationService } from './services/location.service';
+import { RoomService } from './services/room.service';
+
 @Component({
   templateUrl: 'app.html',
-  providers:[LoginService, UtilService,AccountService,LocationService]
+  providers:[LoginService, UtilService,AccountService,LocationService, RoomService]
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-
+import { RoomService } from '../../app/services/room.service';
 /*
   Generated class for the Room page.
 
@@ -13,11 +13,21 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class RoomPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  public roomDetails = this.navParams.data;
+  public rooms: any;
+  constructor(public navCtrl: NavController, public navParams: NavParams, private rs: RoomService) {}
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad RoomPage');
-    console.log(this.navParams.data);
+    this.rs.getAllRooms(this.roomDetails.location).subscribe(res => {
+      this.rooms = res;
+      console.log(res);
+    });
+  }
+
+  openRoom(roomName:any)
+  {
+    //this.navCtrl.push(SwitchPage,{'room':roomName});
   }
 
 }

@@ -13,7 +13,7 @@ export class RoomService{
         this.baseUrl= this.baseUrl+this.myUrl;
         console.log(this.baseUrl);
     }
-    getaAllRooms(loc:any){
+    getAllRooms(loc:any){
         let token = this.ls.getToken();
         let headers = new Headers({'Content-Type':'application/json','x-access-token':token});
         let options = new RequestOptions({'headers':headers});

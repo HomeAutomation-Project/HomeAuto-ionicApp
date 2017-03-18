@@ -6,13 +6,41 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>room</ion-title>
+  <ion-navbar color="danger">
+    <ion-title>{{roomDetails.location}} Rooms</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding class="cards-bg">
+  <ion-card *ngFor="let room of rooms">
 
+    <ion-card-content>
+      <ion-card-title>
+       {{room.name}}
+      </ion-card-title>
+    </ion-card-content>
+    <ion-row no-padding>
+      <ion-col>
+        <button ion-button clear small color="danger" icon-left>
+          <ion-icon name='md-open'></ion-icon>
+          View
+        </button>
+      </ion-col>
+      <ion-col text-center>
+        <button ion-button clear small color="danger" icon-left>
+          <ion-icon name='md-create'></ion-icon>
+          Edit
+        </button>
+      </ion-col>
+      <ion-col text-right>
+        <button ion-button clear small color="danger" icon-left>
+          <ion-icon name='md-trash'></ion-icon>
+          Delete
+        </button>
+      </ion-col>
+    </ion-row>
+
+  </ion-card>
 </ion-content>

@@ -17,7 +17,7 @@ export class Location {
   
   }
 
-  openRoom(loc:any){
+  openLocation(loc:any){
     this.navCtrl.push(RoomPage,{"location":loc})
   }
 }
