@@ -16,10 +16,11 @@ import { LocationService } from './services/location.service';
 import { RoomService } from './services/room.service';
 import { ScheduleService } from './services/schedule.service';
 import { SwitchPage } from '../pages/switch/switch';
+import { SwitchService } from './services/switch.service';
 
 @Component({
   templateUrl: 'app.html',
-  providers:[LoginService, UtilService,AccountService,LocationService, RoomService, ScheduleService]
+  providers:[LoginService, UtilService,AccountService,LocationService, RoomService, ScheduleService, SwitchService]
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
