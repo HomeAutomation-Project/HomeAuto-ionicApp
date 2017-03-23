@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { SwitchService } from '../../app/services/switch.service';
 
 /*
@@ -15,17 +15,15 @@ import { SwitchService } from '../../app/services/switch.service';
 export class SwitchPage {
   public roomDetails = this.navParams.data;
   public switches:any;
-  constructor(public navCtrl: NavController, public navParams: NavParams, private ss:SwitchService) {}
+  constructor(public navCtrl: NavController, public navParams: NavParams, private ss:SwitchService, private alertCtrl:AlertController) {}
 
-  ionViewDidLoad(refresh) {
-    //console.log('ionViewDidLoad SwitchPage');
-    this.ss.getAllSwitches(this.roomDetails.location,this.roomDetails.room).subscribe(res=>{
+  ionViewDidLoad(refresh?:any) {
+      this.ss.getAllSwitches(this.roomDetails.location,this.roomDetails.room).subscribe(res=>{
       this.switches=res;
       console.log(res);
       if(refresh)
         refresh.complete();
     });
-    //console.log(this.roomDetails);
   }
     toggleSwitch(x,y)
     {
@@ -43,6 +41,32 @@ export class SwitchPage {
       {
          return false;
       }
+    }
+    delete(x)
+    {
+    let alert = this.alertCtrl.create({
+    title: 'Confirm delete',
+    message: 'Do you want to delete this switch?',
+    buttons: [
+      {
+        text: 'Cancel',
+        role: 'cancel',
+        handler: () => {
+          console.log('Cancel clicked');
+        }
+      },
+      {
+        text: 'Delete',
+        handler: () => {
+          this.ss.deleteSwitch(this.roomDetails.location,this.roomDetails.room,x).subscribe(res=>{console.log(res)});
+          this.ionViewDidLoad();
+          console.log('Buy clicked');
+        }
+      }
+    ]
+  });
+  alert.present();
+      
     }
 
 

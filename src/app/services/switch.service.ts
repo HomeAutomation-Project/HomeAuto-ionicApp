@@ -31,4 +31,13 @@ export class SwitchService{
                     .map((res:Response) => {res.json();})
                     .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
     }
+    deleteSwitch(loc:any,room:any,sw:any)
+    {
+        let token = this.ls.getToken();
+        let headers = new Headers({'Content-Type':'application/json','x-access-token':token});
+        let options = new RequestOptions({'headers':headers});
+        return this.http.delete(this.baseUrl+'/switch/'+loc+'/'+room+'/'+sw,options)
+                    .map((res:Response) => {res.json();})
+                    .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+    }
 }
