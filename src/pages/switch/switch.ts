@@ -60,7 +60,7 @@ export class SwitchPage {
         handler: () => {
           this.ss.deleteSwitch(this.roomDetails.location,this.roomDetails.room,x).subscribe(res=>{console.log(res)});
           this.ionViewDidLoad();
-          console.log('Buy clicked');
+          console.log('Switch Deleted');
         }
       }
     ]

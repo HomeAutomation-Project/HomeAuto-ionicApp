@@ -35,7 +35,7 @@
         </button>
       </ion-col>
       <ion-col text-right>
-        <button ion-button clear small color="danger" icon-left>
+        <button ion-button clear small color="danger" icon-left (click)="delete(room.name)">
           <ion-icon name='md-trash'></ion-icon>
           Delete
         </button>
