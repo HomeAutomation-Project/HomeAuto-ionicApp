@@ -42,6 +42,42 @@ export class SwitchPage {
          return false;
       }
     }
+
+
+    edit(sw:string) {
+    let prompt = this.alertCtrl.create({
+      title: 'Enter switch Name',
+      message: "Enter a new name for "+sw,
+      inputs: [
+        {
+          name: 'Name',
+          placeholder: "Eg. "+sw
+        },
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Save',
+          handler: data => {
+            console.log(data.Name);
+            this.ss.editName(this.roomDetails.location,this.roomDetails.room, sw, data.Name).subscribe(res=>{
+              console.log(res)
+              this.ionViewDidLoad();
+            });
+          }
+        }
+      ]
+    });
+    prompt.present();
+  }
+
+
+
     delete(x)
     {
     let alert = this.alertCtrl.create({

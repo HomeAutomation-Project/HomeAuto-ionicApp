@@ -63,7 +63,6 @@ export class RoomPage {
   }
 
 
-
   delete(x)
     {
     let alert = this.alertCtrl.create({
