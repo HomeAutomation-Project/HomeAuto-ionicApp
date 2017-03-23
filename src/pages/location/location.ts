@@ -55,4 +55,32 @@ export class Location {
     });
     prompt.present();
   }
+  delete(x)
+    {
+    let alert = this.alertCtrl.create({
+    title: 'Confirm delete',
+    message: 'Do you want to delete this Location?',
+    buttons: [
+      {
+        text: 'Cancel',
+        role: 'cancel',
+        handler: () => {
+          console.log('Cancel clicked');
+        }
+      },
+      {
+        text: 'Delete',
+        handler: () => {
+          this.loc.deletePlace(x).subscribe(res=>{console.log(res)});
+         
+          console.log('Room Deleted');
+           this.ionViewDidLoad();
+        }
+      }
+    ]
+  });
+  alert.present();
+      
+    }
+
 }
