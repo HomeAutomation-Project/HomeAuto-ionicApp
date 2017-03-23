@@ -21,4 +21,13 @@ export class LocationService{
                     .map((res:Response) => res.json())
                     .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
     }
+    editName(location:string,name:string)
+    {
+        let token = this.ls.getToken();
+        let headers = new Headers({'Content-Type':'application/json','x-access-token':token});
+        let options = new RequestOptions({'headers':headers});
+        return this.http.put(this.baseUrl+'/place/'+location, JSON.stringify({'name':name}),options)
+                    .map((res:Response) => res.json())
+                    .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+    }
 }
