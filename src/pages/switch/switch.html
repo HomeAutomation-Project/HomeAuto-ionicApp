@@ -18,7 +18,7 @@
     <ion-card-content>
       <ion-card-title>
        {{switch.SwitchName}}
-      <ion-toggle checked="ss.getStatus(switch.status)"></ion-toggle>
+      <ion-toggle [checked]="getStatus(switch.status)"></ion-toggle>
       </ion-card-title>
       
     </ion-card-content>
