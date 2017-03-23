@@ -28,14 +28,16 @@ export class SwitchPage {
     });
     //console.log(this.roomDetails);
   }
+    toggleSwitch(x,y)
+    {
+      this.ss.setStatus(this.roomDetails.location,this.roomDetails.room,x,!y).subscribe(res=>{console.log(res)});
+    }
 
   
     getStatus(x)
     {
-      console.log(x)
-      if(x == 'ON')
+       if(x == 'ON')
         {
-          console.log("ON Executed")
           return true;
         }
       else

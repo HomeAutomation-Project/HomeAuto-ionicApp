@@ -21,4 +21,14 @@ export class SwitchService{
                     .map((res:Response) => res.json())
                     .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
     }
+    setStatus(loc:any,room:any,sw:any,status:boolean)
+    {
+        let s=status?'ON':'OFF';
+        let token = this.ls.getToken();
+        let headers = new Headers({'Content-Type':'application/json','x-access-token':token});
+        let options = new RequestOptions({'headers':headers});
+        return this.http.get(this.baseUrl+'/switch/'+loc+'/'+room+'/'+sw+'/'+s,options)
+                    .map((res:Response) => {res.json();})
+                    .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+    }
 }
