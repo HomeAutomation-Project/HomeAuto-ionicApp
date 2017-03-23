@@ -30,6 +30,40 @@ export class RoomPage {
   {
     this.navCtrl.push(SwitchPage,{'room':roomName,'location':location});
   }
+  edit(room:string) {
+    let prompt = this.alertCtrl.create({
+      title: 'Enter Room Name',
+      message: "Enter a new name for "+room,
+      inputs: [
+        {
+          name: 'Name',
+          placeholder: "Eg. "+room
+        },
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Save',
+          handler: data => {
+            console.log(data.Name);
+            this.rs.editName(this.roomDetails.location, room, data.Name).subscribe(res=>{
+              console.log(res)
+              this.ionViewDidLoad();
+            });
+          }
+        }
+      ]
+    });
+    prompt.present();
+  }
+
+
+
   delete(x)
     {
     let alert = this.alertCtrl.create({
