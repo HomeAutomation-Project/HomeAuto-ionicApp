@@ -13,10 +13,12 @@ export class Location {
     this.locations=[];
   }
 
-  ionViewDidLoad()
+  ionViewDidLoad(refresh?:any)
   {
     this.loc.getLocationDetails().subscribe(res=>{console.log(res)
     this.locations=res;
+     if(refresh)
+        refresh.complete();
     });
   }
 
@@ -82,5 +84,37 @@ export class Location {
   alert.present();
       
     }
+    addRoom()
+    {
+      console.log("new");
+      let prompt = this.alertCtrl.create({
+      title: 'Add New',
+      message: "Enter Name of new location",
+      inputs: [
+        {
+          name: 'name',
+          placeholder: 'Name'
+        },
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Save',
+          handler: data => {
+            this.loc.addNew(data.name).subscribe(res=>{console.log(res)});
+            this.ionViewDidLoad();
+            console.log('Saved clicked');
+          }
+        }
+      ]
+    });
+    prompt.present();
+  }
+    
 
 }
