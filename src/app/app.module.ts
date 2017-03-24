@@ -10,6 +10,7 @@ import {Login} from '../pages/login/login';
 import {SignupPage} from '../pages/signup/signup';
 import { RoomPage } from '../pages/room/room';
 import { SwitchPage } from '../pages/switch/switch';
+import { AddScheduleModal } from '../pages/schedule/modal';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { SwitchPage } from '../pages/switch/switch';
     Login,
     SignupPage,
     RoomPage,
-    SwitchPage
+    SwitchPage,
+    AddScheduleModal
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -38,7 +40,8 @@ import { SwitchPage } from '../pages/switch/switch';
     Login,
     SignupPage,
     RoomPage,
-    SwitchPage
+    SwitchPage,
+    AddScheduleModal
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
 })

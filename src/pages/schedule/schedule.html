@@ -11,6 +11,9 @@
   <ion-refresher (ionRefresh)="ionViewDidLoad($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
+  <ion-fab top right edge>
+    <button ion-fab mini (click)="addTask()"><ion-icon name="add"></ion-icon></button>
+  </ion-fab>
   <ion-list>
     <button ion-item *ngFor="let task of tasks">
       <ion-icon name="md-ionic" item-left></ion-icon>

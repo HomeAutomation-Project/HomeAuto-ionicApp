@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ScheduleService } from '../../app/services/schedule.service';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, ModalController } from 'ionic-angular';
+import { AddScheduleModal } from './modal';
 
 @Component({
   selector: 'schedule',
@@ -9,7 +10,7 @@ import { NavController, NavParams } from 'ionic-angular';
 export class Schedule {
   public tasks:any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,private sch:ScheduleService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,private sch:ScheduleService, private modalCtrl:ModalController) {
     // If we navigated to this page, we will have an item available as a nav param
     this.tasks=[];
 }
@@ -22,6 +23,9 @@ ionViewDidLoad(refresh?:any)
         refresh.complete();
   });
 }
-
-
+  addTask()
+  {
+    let modal = this.modalCtrl.create(AddScheduleModal);
+    modal.present();
+  }
 }
