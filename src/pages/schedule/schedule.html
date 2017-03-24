@@ -8,6 +8,9 @@
 </ion-header>
 
 <ion-content>
+  <ion-refresher (ionRefresh)="ionViewDidLoad($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
   <ion-list>
     <button ion-item *ngFor="let task of tasks">
       <ion-icon name="md-ionic" item-left></ion-icon>

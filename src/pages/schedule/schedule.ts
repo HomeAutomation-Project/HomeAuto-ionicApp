@@ -12,12 +12,16 @@ export class Schedule {
   constructor(public navCtrl: NavController, public navParams: NavParams,private sch:ScheduleService) {
     // If we navigated to this page, we will have an item available as a nav param
     this.tasks=[];
-    this.sch.getScheduleDetails().subscribe(res=>{
+}
+ionViewDidLoad(refresh?:any)
+{
+  this.sch.getScheduleDetails().subscribe(res=>{
       console.log(res);
       this.tasks=res;
+      if(refresh)
+        refresh.complete();
   });
-    
-  }
+}
 
 
 }
