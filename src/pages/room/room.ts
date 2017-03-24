@@ -92,5 +92,40 @@ export class RoomPage {
   alert.present();
       
     }
+    addPlace()
+    {
+      console.log("new");
+      let prompt = this.alertCtrl.create({
+      title: 'Add New',
+      message: "Enter Name of new location and PIR number between 2-27",
+      inputs: [
+        {
+          name: 'name',
+          placeholder: 'Name'
+        },
+        {
+          name: 'pir',
+          placeholder: 'PIR'
+        },
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Save',
+          handler: data => {
+            this.rs.addNew(this.roomDetails.location,data.name,data.pir).subscribe(res=>{console.log(res)});
+            this.ionViewDidLoad();
+            console.log('Saved clicked');
+          }
+        }
+      ]
+    });
+    prompt.present();
+  }
 
 }
