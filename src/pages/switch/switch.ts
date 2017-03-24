@@ -104,6 +104,47 @@ export class SwitchPage {
   alert.present();
       
     }
+   
+   
+    addSwitch()
+    {
+      console.log("new");
+      let prompt = this.alertCtrl.create({
+      title: 'Add New',
+      message: "Enter details of new switch",
+      inputs: [
+        {
+          name: 'name',
+          placeholder: 'Name'
+        },
+        {
+          name: 'status',
+          placeholder: 'ON/OFF/PIR'
+        },
+        {
+          name: 'gpio',
+          placeholder: 'GPIO'
+        },
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Save',
+          handler: data => {
+            this.ss.addNew(this.roomDetails.location,this.roomDetails.room,data.name,data.status,data.gpio).subscribe(res=>{console.log(res)});
+            this.ionViewDidLoad();
+            console.log('Saved clicked');
+          }
+        }
+      ]
+    });
+    prompt.present();
+  }
 
 
 }

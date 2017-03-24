@@ -16,6 +16,9 @@
   <ion-refresher (ionRefresh)="ionViewDidLoad($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
+  <ion-fab top right edge>
+    <button ion-fab mini (click)="addSwitch()"><ion-icon name="add"></ion-icon></button>
+  </ion-fab>
   <ion-card *ngFor="let switch of switches">
 
     <ion-card-content>
