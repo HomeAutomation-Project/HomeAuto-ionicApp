@@ -4,7 +4,7 @@ import { LocationService } from '../../app/services/location.service';
 import { LoginService } from '../../app/services/login.service';
 import { RoomService } from '../../app/services/room.service';
 import { SwitchService } from '../../app/services/switch.service';
-
+import { ScheduleService } from '../../app/services/schedule.service';
 @Component({
   template:`
   <ion-header>
@@ -24,7 +24,7 @@ import { SwitchService } from '../../app/services/switch.service';
     <ion-list>
         <ion-item>
             <ion-label floating>Schedule Name</ion-label>
-            <ion-input type="text"></ion-input>
+            <ion-input type="text" [(ngModel)]="TaskName"></ion-input>
         </ion-item>
         <ion-item>
             <ion-label>Location</ion-label>
@@ -45,8 +45,12 @@ import { SwitchService } from '../../app/services/switch.service';
             </ion-select>
         </ion-item>
         <ion-item>
+            <ion-label>Date</ion-label>
+            <ion-datetime displayFormat="MMM DD YYYY" [(ngModel)]="date"></ion-datetime>
+        </ion-item>
+        <ion-item>
             <ion-label>Time</ion-label>
-            <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" [(ngModel)]="gaming"></ion-datetime>
+            <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" [(ngModel)]="time"></ion-datetime>
         </ion-item>
         <ion-item>
             <ion-label>ON/OFF/PIR</ion-label>
@@ -69,12 +73,12 @@ import { SwitchService } from '../../app/services/switch.service';
             </ion-select>
         </ion-item>
         <ion-item>
-            <button ion-button full>Add New Schedule</button>
+            <button ion-button full (click)="addNew()">Add New Schedule</button>
         </ion-item>
     </ion-list>
 </ion-content>
   `,
-  providers: [LocationService, LoginService, RoomService, SwitchService]
+  providers: [LocationService, LoginService, RoomService, SwitchService, ScheduleService]
 })
 export class AddScheduleModal {
   public repeat={do:false, value:'hourly'};
@@ -82,6 +86,9 @@ export class AddScheduleModal {
   public location='';
   public room='';
   public switch = '';
+  public TaskName ='';
+  public date='';
+  public time ='';
   public locations =[];
   public rooms =[];
   public switches =[];
@@ -89,7 +96,8 @@ export class AddScheduleModal {
    public viewCtrl: ViewController,
    private ls: LocationService,
    private rs: RoomService,
-   private ss: SwitchService
+   private ss: SwitchService,
+   private sch: ScheduleService
    ){
        this.ls.getLocationDetails().subscribe(res => this.locations = res);
    }
@@ -110,5 +118,22 @@ export class AddScheduleModal {
               console.log(res)
           }
       )
+  }
+  addNew()
+  {
+      let myDatetime =new Date(this.date+' '+this.time);
+      let data = {
+          "name":this.TaskName,
+          "switch":this.switch,
+          "status":this.onoff,
+          "taskTimeDate":JSON.stringify(myDatetime),
+          "Repeat":this.repeat.value,
+          "repeat":this.repeat.do
+      }
+      console.log(data);
+      this.sch.addNewSchedule(data).subscribe(res=>{
+          console.log(res);
+          this.dismiss();
+      }, err => console.log(err))
   }
 }
