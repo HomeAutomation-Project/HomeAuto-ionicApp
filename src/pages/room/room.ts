@@ -18,11 +18,13 @@ export class RoomPage {
   public rooms: any;
   constructor(public navCtrl: NavController, public navParams: NavParams, private rs: RoomService, private alertCtrl:AlertController) {}
 
-  ionViewDidLoad() {
+  ionViewDidLoad(refresh?:any) {
     console.log('ionViewDidLoad RoomPage');
     this.rs.getAllRooms(this.roomDetails.location).subscribe(res => {
       this.rooms = res;
       console.log(res);
+      if(refresh)
+        refresh.complete();
     });
   }
 

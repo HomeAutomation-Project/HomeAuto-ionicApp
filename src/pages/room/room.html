@@ -14,6 +14,9 @@
 
 
 <ion-content padding class="cards-bg">
+   <ion-refresher (ionRefresh)="ionViewDidLoad($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
   <ion-card *ngFor="let room of rooms">
 
     <ion-card-content>
