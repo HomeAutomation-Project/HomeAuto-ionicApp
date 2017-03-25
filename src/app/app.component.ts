@@ -25,7 +25,7 @@ import { SwitchService } from './services/switch.service';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = this.ls.$isLoggedIn? Dashboard: Login;
+  rootPage: any = this.ls.$isLoggedIn? Location: Login;
 
   pages1: Array<{title: string, component: any, icon: String}>;
   pages2: Array<{title: string, component: any, icon: String}>;
