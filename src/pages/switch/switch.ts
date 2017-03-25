@@ -25,9 +25,12 @@ export class SwitchPage {
         refresh.complete();
     });
   }
-    toggleSwitch(x,y)
+    toggleSwitch(switchName:string, status: boolean)
     {
-      this.ss.setStatus(this.roomDetails.location,this.roomDetails.room,x,!y).subscribe(res=>{console.log(res)});
+      this.ss.setStatus(this.roomDetails.location,this.roomDetails.room,switchName,!status).subscribe(res=>{
+        console.log(res)
+        this.ionViewDidLoad();
+    });
     }
 
   
