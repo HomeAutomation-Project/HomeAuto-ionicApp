@@ -126,7 +126,7 @@ export class AddScheduleModal {
           "name":this.TaskName,
           "switch":this.switch,
           "status":this.onoff,
-          "taskTimeDate":JSON.stringify(myDatetime),
+          "taskTimeDate":myDatetime,
           "Repeat":this.repeat.value,
           "repeat":this.repeat.do
       }
