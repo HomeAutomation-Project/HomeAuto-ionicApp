@@ -15,12 +15,15 @@
     <button ion-fab mini (click)="addTask()"><ion-icon name="add"></ion-icon></button>
   </ion-fab>
   <ion-list>
-    <button ion-item *ngFor="let task of tasks">
+    <br/>
+    <button ion-item *ngFor="let task of tasks" (click)="doAction(task)">
       <ion-icon name="md-ionic" item-left></ion-icon>
-      {{task.name}}
-      <div class="item-note" item-right>
-        
-      </div>
+        <b>Task:</b> {{task.name}}
+      <br/>
+      <span><b>Time:</b> {{task.taskTimeDate | date:'short'}}</span>
+      <br/>
+      <span><b>Switch Name:</b> {{task.SName}}</span><br/>
+      <span><b>Repeat:</b> {{task.repeat}}</span>
     </button>
   </ion-list>
   

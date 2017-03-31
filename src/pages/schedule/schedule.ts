@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ScheduleService } from '../../app/services/schedule.service';
 import { NavController, NavParams, ModalController } from 'ionic-angular';
 import { AddScheduleModal } from './modal';
+import { ActionSheetController } from 'ionic-angular';
 
 @Component({
   selector: 'schedule',
@@ -10,7 +11,7 @@ import { AddScheduleModal } from './modal';
 export class Schedule {
   public tasks:any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,private sch:ScheduleService, private modalCtrl:ModalController) {
+  constructor(public actionSheetCtrl: ActionSheetController,public navCtrl: NavController, public navParams: NavParams,private sch:ScheduleService, private modalCtrl:ModalController) {
     // If we navigated to this page, we will have an item available as a nav param
     this.tasks=[];
 }
@@ -27,5 +28,31 @@ ionViewDidLoad(refresh?:any)
   {
     let modal = this.modalCtrl.create(AddScheduleModal);
     modal.present();
+  }
+   doAction(task) {
+    let actionSheet = this.actionSheetCtrl.create({
+      title: 'Modify your task',
+      buttons: [
+        {
+          text: 'Delete',
+          role: 'destructive',
+          handler: () => {
+            console.log('Delete clicked');
+          }
+        },{
+          text: 'Edit',
+          handler: () => {
+            console.log('Edit clicked');
+          }
+        },{
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        }
+      ]
+    });
+    actionSheet.present();
   }
 }
