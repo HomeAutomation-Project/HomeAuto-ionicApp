@@ -20,7 +20,19 @@ export class Account {
           this.user.username = res.username;
           this.user.email =res.email;
         });
-          
+       
+
+        }
+          updateDetails(username,email,first,last){
+            this.acc.updateDetails(username,email,first,last).subscribe(res=>{
+              this.acc.getAccountDetails().subscribe(res=>{
+              console.log(res);
+              this.user.first = res.name.first;
+              this.user.last = res.name.last;
+              this.user.username = res.username;
+              this.user.email =res.email;
+               });
+            }); 
   }
   
 

@@ -21,4 +21,12 @@ export class AccountService {
                     .map((res:Response) => res.json())
                     .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
     }
+    updateDetails(username:any,email:any,first:any,last:any){
+        let token = this.ls.getToken();
+        let headers = new Headers({'Content-Type':'application/json','x-access-token':token});
+        let options = new RequestOptions({'headers':headers});
+        return this.http.put(this.baseUrl+'/user',JSON.stringify({'username':username,'email':email,'first':first,'last':last}),options)
+                    .map((res:Response) => res.json())
+                    .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+    }
 }
