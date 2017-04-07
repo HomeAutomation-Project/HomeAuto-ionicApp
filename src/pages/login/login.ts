@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-
+import { Location } from "../location/location";
 import { Dashboard } from '../dashboard/dashboard'
 
 import { LoginService } from '../../app/services/login.service';
@@ -31,7 +31,7 @@ export class Login{
         this.ls.setToken(result.token);
         loader.dismiss();
         this.us.Alert("Success", "You have been logged in!");
-        this.navCtrl.setRoot(Dashboard);
+        this.navCtrl.setRoot(Location);
       },
       error =>{
         console.log(error);

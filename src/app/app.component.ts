@@ -25,11 +25,11 @@ import { SwitchService } from './services/switch.service';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = this.ls.$isLoggedIn? Location: Login;
+  rootPage: any = Login;
 
   pages1: Array<{title: string, component: any, icon: String}>;
   pages2: Array<{title: string, component: any, icon: String}>;
-  public f;
+  public f:boolean;
   constructor(public platform: Platform, private ls: LoginService) {
     this.initializeApp();
     
@@ -47,7 +47,11 @@ export class MyApp {
       { title: 'Settings', component: Settings, icon:'settings'}
     ];
 
-    this.ls.$isLoggedIn.subscribe(val =>{
+    this.ls.$isLoggedIn.subscribe((val:boolean) =>{
+      if(val && !this.f && val)
+      {
+        this.rootPage = Location;
+      }
       this.f =val;
     })
   }
