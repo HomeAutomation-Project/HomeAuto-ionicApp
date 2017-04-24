@@ -3,6 +3,7 @@ import { ScheduleService } from '../../app/services/schedule.service';
 import { NavController, NavParams, ModalController } from 'ionic-angular';
 import { AddScheduleModal } from './modal';
 import { ActionSheetController } from 'ionic-angular';
+import { EditScheduleModal } from "./edit-modal";
 
 @Component({
   selector: 'schedule',
@@ -11,7 +12,11 @@ import { ActionSheetController } from 'ionic-angular';
 export class Schedule {
   public tasks:any;
 
-  constructor(public actionSheetCtrl: ActionSheetController,public navCtrl: NavController, public navParams: NavParams,private sch:ScheduleService, private modalCtrl:ModalController) {
+  constructor(public actionSheetCtrl: ActionSheetController,
+              public navCtrl: NavController,
+              public navParams: NavParams,
+              private sch:ScheduleService, 
+              private modalCtrl:ModalController) {
     // If we navigated to this page, we will have an item available as a nav param
     this.tasks=[];
 }
@@ -43,6 +48,8 @@ ionViewDidLoad(refresh?:any)
           text: 'Edit',
           handler: () => {
             console.log('Edit clicked');
+            let modal = this.modalCtrl.create(EditScheduleModal);
+            modal.present();
           }
         },{
           text: 'Cancel',

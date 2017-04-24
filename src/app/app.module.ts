@@ -11,6 +11,7 @@ import {SignupPage} from '../pages/signup/signup';
 import { RoomPage } from '../pages/room/room';
 import { SwitchPage } from '../pages/switch/switch';
 import { AddScheduleModal } from '../pages/schedule/modal';
+import { EditScheduleModal } from "../pages/schedule/edit-modal";
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { AddScheduleModal } from '../pages/schedule/modal';
     SignupPage,
     RoomPage,
     SwitchPage,
-    AddScheduleModal
+    AddScheduleModal,
+    EditScheduleModal
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -41,7 +43,8 @@ import { AddScheduleModal } from '../pages/schedule/modal';
     SignupPage,
     RoomPage,
     SwitchPage,
-    AddScheduleModal
+    AddScheduleModal,
+    EditScheduleModal
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
 })
