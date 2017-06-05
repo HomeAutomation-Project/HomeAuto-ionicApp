@@ -29,4 +29,12 @@ export class ScheduleService{
                     .map((res:Response) => res.json())
                     .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
     }
+    editSchedule(name:string,body:any){
+        let token = this.ls.getToken();
+        let headers = new Headers({'Content-Type':'application/json','x-access-token':token});
+        let options = new RequestOptions({'headers':headers});
+        return this.http.post(this.baseUrl+'/task/'+name,JSON.stringify(body),options)
+                    .map((res:Response) => res.json())
+                    .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+    }
 }
