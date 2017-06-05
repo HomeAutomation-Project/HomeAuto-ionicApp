@@ -19,22 +19,23 @@ export class Schedule {
               private modalCtrl:ModalController) {
     // If we navigated to this page, we will have an item available as a nav param
     this.tasks=[];
-}
-ionViewDidLoad(refresh?:any)
-{
-  this.sch.getScheduleDetails().subscribe(res=>{
-      console.log(res);
-      this.tasks=res;
-      if(refresh)
-        refresh.complete();
-  });
-}
+  }
+  ionViewDidLoad(refresh?:any)
+  {
+    this.sch.getScheduleDetails().subscribe(res=>{
+        console.log(res);
+        this.tasks=res;
+        if(refresh)
+          refresh.complete();
+    });
+  }
   addTask()
   {
     let modal = this.modalCtrl.create(AddScheduleModal);
     modal.present();
   }
-   doAction(task) {
+  doAction(task)
+  {
     let actionSheet = this.actionSheetCtrl.create({
       title: 'Modify your task',
       buttons: [
@@ -47,8 +48,8 @@ ionViewDidLoad(refresh?:any)
         },{
           text: 'Edit',
           handler: () => {
-            console.log('Edit clicked');
-            let modal = this.modalCtrl.create(EditScheduleModal);
+            console.log('Edit clicked' + JSON.stringify(task));
+            let modal = this.modalCtrl.create(EditScheduleModal,task);
             modal.present();
           }
         },{

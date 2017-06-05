@@ -5,6 +5,7 @@ import { LoginService } from '../../app/services/login.service';
 import { RoomService } from '../../app/services/room.service';
 import { SwitchService } from '../../app/services/switch.service';
 import { ScheduleService } from '../../app/services/schedule.service';
+import * as moment from 'moment'
 @Component({
   template:`
   <ion-header>
@@ -27,30 +28,12 @@ import { ScheduleService } from '../../app/services/schedule.service';
             <ion-input type="text" [(ngModel)]="TaskName"></ion-input>
         </ion-item>
         <ion-item>
-            <ion-label>Location</ion-label>
-            <ion-select [(ngModel)]="location" (ionChange)="fetchRooms()">
-                <ion-option *ngFor="let l of locations" value="{{l.name}}">{{l.name}}</ion-option>
-            </ion-select>
-        </ion-item>
-        <ion-item>
-            <ion-label>Rooms</ion-label>
-            <ion-select [(ngModel)]="room" (ionChange)="fetchSwitches()">
-                <ion-option *ngFor="let r of rooms" value="{{r.name}}">{{r.name}}</ion-option>
-            </ion-select>
-        </ion-item>
-        <ion-item>
-            <ion-label>Switch</ion-label>
-            <ion-select [(ngModel)]="switch">
-                <ion-option *ngFor="let s of switches" value="{{s._id}}">{{s.SwitchName}}</ion-option>
-            </ion-select>
-        </ion-item>
-        <ion-item>
             <ion-label>Date</ion-label>
-            <ion-datetime displayFormat="MMM DD YYYY" [(ngModel)]="date"></ion-datetime>
+            <ion-datetime displayFormat="MMM DD YYYY" [(ngModel)]="t"></ion-datetime>
         </ion-item>
         <ion-item>
             <ion-label>Time</ion-label>
-            <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" [(ngModel)]="time"></ion-datetime>
+            <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" [(ngModel)]="t"></ion-datetime>
         </ion-item>
         <ion-item>
             <ion-label>ON/OFF/PIR</ion-label>
@@ -61,19 +44,7 @@ import { ScheduleService } from '../../app/services/schedule.service';
             </ion-select>
         </ion-item>
         <ion-item>
-            <ion-label>Repeat</ion-label>
-            <ion-checkbox color="dark" [checked]="repeat.do" [(ngModel)]="repeat.do"></ion-checkbox>
-        </ion-item>
-        <ion-item>
-            <ion-label>Hourly/Daily/Weekly</ion-label>
-            <ion-select [(ngModel)]="repeat.value" [disabled]="!repeat.do">
-                <ion-option value="hourly">Hourly</ion-option>
-                <ion-option value="daily">Daily</ion-option>
-                <ion-option value="weekly">Weekly</ion-option>
-            </ion-select>
-        </ion-item>
-        <ion-item>
-            <button ion-button full (click)="addNew()">Add New Schedule</button>
+            <button ion-button full (click)="EditTask()">Edit Schedule</button>
         </ion-item>
     </ion-list>
 </ion-content>
@@ -81,14 +52,15 @@ import { ScheduleService } from '../../app/services/schedule.service';
   providers: [LocationService, LoginService, RoomService, SwitchService, ScheduleService]
 })
 export class EditScheduleModal {
-  public repeat={do:false, value:'hourly'};
-  public onoff="ON";
+  public t = moment(this.params.get('taskTimeDate')).add(5,'h').add(30,'m').toDate().toJSON();
+  public onoff=this.params.get('status');
   public location='';
   public room='';
   public switch = '';
-  public TaskName ='';
-  public date='';
-  public time ='';
+  public oldName = this.params.get('name');
+  public TaskName = this.params.get('name');
+  public date=this.t;
+  public time =this.t;
   public locations =[];
   public rooms =[];
   public switches =[];
@@ -97,41 +69,25 @@ export class EditScheduleModal {
    private ls: LocationService,
    private rs: RoomService,
    private ss: SwitchService,
-   private sch: ScheduleService
+   private sch: ScheduleService,
+   private params: NavParams
    ){
-       this.ls.getLocationDetails().subscribe(res => this.locations = res);
    }
 
   dismiss() {
     this.viewCtrl.dismiss();
   }
-  fetchRooms()
+  EditTask()
   {
-      console.log(this.location)
-      this.rs.getAllRooms(this.location).subscribe(res => this.rooms=res, err=> console.log(err));
-  }
-  fetchSwitches()
-  {
-      this.ss.getAllSwitches(this.location, this.room).subscribe(
-          res => {
-              this.switches = res;
-              console.log(res)
-          }
-      )
-  }
-  addNew()
-  {
-      let myDatetime =new Date(this.date+' '+this.time);
+      let myDatetime =moment(this.t).subtract(5,'h').subtract(30,'m').toJSON();
+      console.log(myDatetime)
       let data = {
-          "name":this.TaskName,
-          "switch":this.switch,
+          "name": this.TaskName,
           "status":this.onoff,
-          "taskTimeDate":myDatetime,
-          "Repeat":this.repeat.value,
-          "repeat":this.repeat.do
+          "taskTimeDate": myDatetime
       }
       console.log(data);
-      this.sch.addNewSchedule(data).subscribe(res=>{
+      this.sch.editSchedule(this.oldName,data).subscribe(res=>{
           console.log(res);
           this.dismiss();
       }, err => console.log(err))
