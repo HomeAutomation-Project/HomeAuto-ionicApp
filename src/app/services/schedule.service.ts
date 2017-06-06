@@ -37,4 +37,13 @@ export class ScheduleService{
                     .map((res:Response) => res.json())
                     .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
     }
+    deleteSchedule(name:string){
+       // console.log(name);
+        let token = this.ls.getToken();
+        let headers = new Headers({'Content-Type':'application/json','x-access-token':token});
+        let options = new RequestOptions({'headers':headers});
+        return this.http.delete(this.baseUrl+'/task/'+name,options)
+                    .map((res:Response) => res.json())
+                    .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+    }
 }
