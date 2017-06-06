@@ -73,10 +73,13 @@ export class Location {
       {
         text: 'Delete',
         handler: () => {
-          this.loc.deletePlace(x).subscribe(res=>{console.log(res)});
+          this.loc.deletePlace(x).subscribe(res=>{
+            console.log(res);
+            this.ionViewDidLoad();
+          });
          
           console.log('Room Deleted');
-           this.ionViewDidLoad();
+           
         }
       }
     ]

@@ -81,10 +81,13 @@ export class RoomPage {
       {
         text: 'Delete',
         handler: () => {
-          this.rs.deleteRoom(this.roomDetails.location,x).subscribe(res=>{console.log(res)});
+          this.rs.deleteRoom(this.roomDetails.location,x).subscribe(res=>{
+            console.log(res);
+            this.ionViewDidLoad();
+          });
          
           console.log('Room Deleted');
-           this.ionViewDidLoad();
+           
         }
       }
     ]

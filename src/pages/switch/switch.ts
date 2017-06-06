@@ -97,8 +97,11 @@ export class SwitchPage {
       {
         text: 'Delete',
         handler: () => {
-          this.ss.deleteSwitch(this.roomDetails.location,this.roomDetails.room,x).subscribe(res=>{console.log(res)});
-          this.ionViewDidLoad();
+          this.ss.deleteSwitch(this.roomDetails.location,this.roomDetails.room,x).subscribe(res=>{
+            console.log(res);
+            this.ionViewDidLoad();
+          });
+          
           console.log('Switch Deleted');
         }
       }
